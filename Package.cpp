@@ -1,0 +1,246 @@
+#include "Package.h"
+#include <stdexcept>
+
+Package::Package(std::string _id, std::string nm_s, std::string nm_r, std::string ad_s, std::string ad_r, std::string ct_s,
+	            std::string ct_r, std::string st_s, std::string st_r, int zc_s, int zc_r, double wg, double co){
+     setID(_id);
+     setSenderName(nm_s);
+     setRecipientName(nm_r);
+     setSenderAddress(ad_s);
+     setRecipientAddress(ad_r);
+     setSenderCity(ct_s);
+     setRecipientCity(ct_r);
+     setSenderState(st_s);
+     setRecipientState(st_r);
+     setSenderZipCode(zc_s);
+     setRecipientZipCode(zc_r);
+     setWeight(wg);
+     setCostPerOnce(co);
+}
+
+void Package::setID(std::string _id){
+     if(_id.length()>0 && _id.length()<=15){
+          id = _id;
+     }
+     else{
+          throw std::invalid_argument("Invalid ID");
+     }
+}
+
+void Package::setSenderName(std::string nm_s){
+     if(nm_s.length()>0 && nm_s.length()<=40){
+          name_sender = nm_s;
+     }
+     else{
+          throw std::invalid_argument("Invalid Sender Name");
+     }
+}
+
+void Package::setRecipientName(std::string nm_r){
+     if(nm_r.length()>0 && nm_r.length()<=40){
+          name_recipient = nm_r;
+     }
+     else{
+          throw std::invalid_argument("Invalid Recipient Name");
+     }
+}
+
+void Package::setSenderAddress(std::string ad_s){
+     if(ad_s.length()>0 && ad_s.length()<=50){
+          address_sender = ad_s;
+     }
+     else{
+          throw std::invalid_argument("Invalid Sender Address");
+     }
+}
+
+void Package::setRecipientAddress(std::string ad_r){
+     if(ad_r.length()>0 && ad_r.length()<=50){
+          address_recipient = ad_r;
+     }
+     else{
+          throw std::invalid_argument("Invalid Recipient Address");
+     }
+}
+
+void Package::setSenderCity(std::string ct_s){
+     if(ct_s.length()>0 && ct_s.length()<=30){
+          city_sender = ct_s;
+     }
+     else{
+          throw std::invalid_argument("Invalid Sender City");
+     }
+}
+
+void Package::setRecipientCity(std::string ct_r){
+     if(ct_r.length()>0 && ct_r.length()<=30){
+          city_recipient = ct_r;
+     }
+     else{
+          throw std::invalid_argument("Invalid Recipient City");
+     }
+}
+
+void Package::setSenderState(std::string st_s){
+     if(st_s.length()>0 && st_s.length()<=30){
+          state_sender = st_s;
+     }
+     else{
+          throw std::invalid_argument("Invalid Sender State");
+     }
+}
+
+void Package::setRecipientState(std::string st_r){
+     if(st_r.length()>0 && st_r.length()<=30){
+          state_recipient = st_r;
+     }
+     else{
+          throw std::invalid_argument("Invalid Recipient State");
+     }
+}
+
+void Package::setSenderZipCode(int zc_s){
+     if(zc_s>0 && zc_s<=999999){
+          zipCode_sender = zc_s;
+     }
+     else{
+          throw std::invalid_argument("Invalid Sender Zip Code");
+     }
+}
+
+void Package::setRecipientZipCode(int zc_r){
+     if(zc_r>0 && zc_r<=999999){
+          zipCode_recipient = zc_r;
+     }
+     else{
+          throw std::invalid_argument("Invalid Recipient Zip Code");
+     }
+}
+
+void Package::setWeight(double wg){
+     if(wg>0 && wg<=10000){
+          weight = wg;
+     }
+     else{
+          throw std::invalid_argument("Invalid Weight");
+     }
+}
+
+void Package::setCostPerOnce(double co){
+     if(co>0 && co<=500){
+          costPerOnce = co;
+     }
+     else{
+          throw std::invalid_argument("Invalid Cost per Once");
+     }
+}
+
+std::string Package::getID() const{
+     return id;
+}
+
+std::string Package::getSenderName() const{
+     return name_sender;
+}
+
+std::string Package::getRecipientName() const{
+     return name_recipient;
+}
+
+std::string Package::getSenderAddress() const{
+     return address_sender;
+}
+
+std::string Package::getRecipientAddress() const{
+     return address_recipient;
+}
+
+std::string Package::getSenderCity() const{
+     return city_sender;
+}
+
+std::string Package::getRecipientCity() const{
+     return city_recipient;
+}
+
+std::string Package::getSenderState() const{
+     return state_sender;
+}
+
+std::string Package::getRecipientState() const{
+     return state_recipient;
+}
+	 
+int Package::getSenderZipCode() const{
+     return zipCode_sender;
+}
+
+int Package::getRecipientZipCode() const{
+     return zipCode_recipient;
+}
+
+double Package::getWeight() const{
+     return weight;
+}
+
+double Package::getCostPerOnce() const{
+     return costPerOnce;
+}
+
+double Package::calculateCost() const{
+     return (getWeight()*getCostPerOnce());
+}
+
+std::ostream& operator<<(std::ostream& out, const Package& a){
+     out<<"ID: "<<a.getID()
+        <<"\nSender Name: "<<a.getSenderName()
+        <<"\nRecipient Name: "<<a.getRecipientName()
+        <<"\nSender Address: "<<a.getSenderAddress()
+        <<"\nRecipient Address: "<<a.getRecipientAddress()
+        <<"\nSender City: "<<a.getSenderCity()
+        <<"\nRecipient City: "<<a.getRecipientCity()
+        <<"\nSender State: "<<a.getSenderState()
+        <<"\nRecipient State: "<<a.getRecipientState()
+        <<"\nSender ZIP Code: "<<a.getSenderZipCode()
+        <<"\nRecipient ZIP Code: "<<a.getRecipientZipCode()
+        <<"\nWeight: "<<a.getWeight()
+        <<"\nCost per Once: "<<a.getCostPerOnce()
+        <<"\nShipping Cost: "<<a.calculateCost()<<std::endl;
+
+     return out;
+}
+
+std::istream& operator>>(std::istream& input, Package& a){
+     input>>a.id
+          >>a.name_sender
+          >>a.name_recipient
+          >>a.address_sender
+          >>a.address_recipient
+          >>a.city_sender
+          >>a.city_recipient
+          >>a.state_sender
+          >>a.state_recipient
+          >>a.zipCode_sender
+          >>a.zipCode_recipient
+          >>a.weight
+          >>a.costPerOnce;
+          
+     return input;
+}
+
+bool Package::operator>(const Package& right) const{
+    return calculateCost() > right.calculateCost();
+}
+
+bool Package::operator>=(const Package& right) const{
+     return calculateCost() >= right.calculateCost();
+}
+
+bool Package::operator==(const Package& right) const{ 
+     return calculateCost() == right.calculateCost();
+}
+
+bool Package::operator!=(const Package& right) const{
+     return calculateCost() != right.calculateCost();  
+}
+
