@@ -15,7 +15,7 @@ Package::Package(std::string _id, std::string nm_s, std::string nm_r, std::strin
      setSenderZipCode(zc_s);
      setRecipientZipCode(zc_r);
      setWeight(wg);
-     setCostPerOnce(co);
+     setCostPerOunce(co);
 }
 
 void Package::setID(std::string _id){
@@ -126,9 +126,9 @@ void Package::setWeight(double wg){
      }
 }
 
-void Package::setCostPerOnce(double co){
+void Package::setCostPerOunce(double co){
      if(co>0 && co<=500){
-          costPerOnce = co;
+          costPerOunce = co;
      }
      else{
           throw std::invalid_argument("Invalid Cost per Once");
@@ -183,12 +183,12 @@ double Package::getWeight() const{
      return weight;
 }
 
-double Package::getCostPerOnce() const{
-     return costPerOnce;
+double Package::getCostPerOunce() const{
+     return costPerOunce;
 }
 
 double Package::calculateCost() const{
-     return (getWeight()*getCostPerOnce());
+     return (getWeight()*getCostPerOunce());
 }
 
 std::ostream& operator<<(std::ostream& out, const Package& a){
@@ -204,7 +204,7 @@ std::ostream& operator<<(std::ostream& out, const Package& a){
         <<"\nSender ZIP Code: "<<a.getSenderZipCode()
         <<"\nRecipient ZIP Code: "<<a.getRecipientZipCode()
         <<"\nWeight: "<<a.getWeight()
-        <<"\nCost per Once: "<<a.getCostPerOnce()
+        <<"\nCost per Once: "<<a.getCostPerOunce()
         <<"\nShipping Cost: "<<a.calculateCost()<<std::endl;
 
      return out;
@@ -223,7 +223,7 @@ std::istream& operator>>(std::istream& input, Package& a){
           >>a.zipCode_sender
           >>a.zipCode_recipient
           >>a.weight
-          >>a.costPerOnce;
+          >>a.costPerOunce;
           
      return input;
 }

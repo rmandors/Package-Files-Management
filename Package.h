@@ -26,7 +26,7 @@ class Package{
 	  		void setSenderZipCode(int);
 	  		void setRecipientZipCode(int);
 	  		void setWeight(double);
-	  		void setCostPerOnce(double);
+	  		void setCostPerOunce(double);
 
 	  		std::string getID() const;
 	  		std::string getSenderName() const;
@@ -40,7 +40,7 @@ class Package{
 	  		int getSenderZipCode() const;
 	  		int getRecipientZipCode() const;
 	  		double getWeight() const;
-	  		double getCostPerOnce() const;
+	  		double getCostPerOunce() const;
 
 	  		bool operator>(const Package&) const;
 	  		bool operator>=(const Package&) const;
@@ -62,7 +62,7 @@ class Package{
 	  		int zipCode_sender;
 	  		int zipCode_recipient;
     		double weight;
-	  		double costPerOnce; 
+	  		double costPerOunce; 
 };
 
 #endif

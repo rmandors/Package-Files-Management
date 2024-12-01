@@ -10,13 +10,13 @@ class OvernightPackage : public Package{
           			       std::string, std::string, std::string, std::string, int, int, 
           			       double, double, double);
 	
-	  	void setOvernightFeePerOnce(double);
-	  	double getOvernightFeePerOnce() const;
+	  	void setOvernightFeePerOunce(double);
+	  	double getOvernightFeePerOunce() const;
 
 	  	double calculateCost() const override;
 
      private:
-       	double overnightFeePerOnce; 
+       	double overnightFeePerOunce; 
 };
 
 #endif
