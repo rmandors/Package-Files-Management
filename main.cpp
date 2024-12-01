@@ -9,6 +9,7 @@ Raymond Portilla - 00335050
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 #include <map>
 #include <memory>
 #include "Package.h"
@@ -210,7 +211,7 @@ void displayPackagesByCost(map<string, unique_ptr<Package>>& packages){
 
         for (auto& [id, package] : packages) {
             keys.push_back(id); 
-            sortedPackages.push_back(std::move(package));
+            sortedPackages.push_back(make_unique<Package>(*package));
         }
 
         sort(sortedPackages.begin(), sortedPackages.end(), [](const unique_ptr<Package>& a, const unique_ptr<Package>& b){
