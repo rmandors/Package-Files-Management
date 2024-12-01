@@ -10,7 +10,8 @@ void displayMenu(){
 		 << "[5] Display Packages ordered by their Type." << endl 
 		 << "[6] Display Packages ordered by their Shipping Cost." << endl
 		 << "[7] Extract and Modify a Package." << endl
-		 << "[8] Exit." << endl << endl;
+		 << "[8] Empty Packages Map." << endl
+		 << "[9] Exit." << endl << endl;
 }
 
 void loadMapDataFromCSVfile(map<string, Package*>& packages){

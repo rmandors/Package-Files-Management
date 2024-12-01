@@ -59,6 +59,15 @@ int main(){
 			}
 
 			case '8':{
+				for(auto& [id, package] : packages){
+    				delete package;
+				}
+				packages.clear();
+				cout << "The map has been emptied." << endl << endl;
+				break;
+			}
+
+			case '9':{
 				cout << "Exiting..." <<endl ;
 				break;
 			}
@@ -69,7 +78,7 @@ int main(){
 			}
 		}
 
-	}while(menuChoice != '8');
+	}while(menuChoice != '9');
 
 	return 0;
 }
