@@ -26,3 +26,35 @@ double OvernightPackage::calculateCost() const{
      double newCostPerOunce = getCostPerOunce() + getOvernightFeePerOunce(); 	
      return (newCostPerOunce * getWeight()); 	
 }
+
+void OvernightPackage::print(std::ostream& out) const{
+     out << "ID: " << getID()
+         << "\nSender Name: " << getSenderName()
+         << "\nRecipient Name: " << getRecipientName()
+         << "\nSender Address: " << getSenderAddress()
+         << "\nRecipient Address: " << getRecipientAddress()
+         << "\nSender City: " << getSenderCity()
+         << "\nRecipient City: " << getRecipientCity()
+         << "\nSender State: " << getSenderState()
+         << "\nRecipient State: " << getRecipientState()
+         << "\nSender ZIP Code: " << getSenderZipCode()
+         << "\nRecipient ZIP Code: " << getRecipientZipCode()
+         << "\nWeight: " << getWeight()
+         << "\nCost per Once: " << getCostPerOunce()
+         << "\nOvernight Fee per Ounce: " << getOvernightFeePerOunce()
+         << "\nShipping Cost: " << calculateCost()<<std::endl;
+}
+
+std::istream& operator>>(std::istream& in, OvernightPackage& p){
+        double overnightFee;
+        
+        std::cin >> static_cast<Package&>(p);  
+
+        std::cout << "Enter Overnight Fee per Ounce: ";
+        in >> overnightFee;
+        p.setOvernightFeePerOunce(overnightFee);
+
+        return in;
+}
+
+

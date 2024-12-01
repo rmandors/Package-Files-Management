@@ -26,4 +26,32 @@ double TwoDayPackage::calculateCost() const{
      return(Package::calculateCost() + flatFeeForTwoDays);	
 }
 
+void TwoDayPackage::print(std::ostream& out) const{
+     out << "ID: " << getID()
+         << "\nSender Name: " << getSenderName()
+         << "\nRecipient Name: " << getRecipientName()
+         << "\nSender Address: " << getSenderAddress()
+         << "\nRecipient Address: " << getRecipientAddress()
+         << "\nSender City: " << getSenderCity()
+         << "\nRecipient City: " << getRecipientCity()
+         << "\nSender State: " << getSenderState()
+         << "\nRecipient State: " << getRecipientState()
+         << "\nSender ZIP Code: " << getSenderZipCode()
+         << "\nRecipient ZIP Code: " << getRecipientZipCode()
+         << "\nWeight: " << getWeight()
+         << "\nCost per Once: " << getCostPerOunce()
+         << "\nFlat Fee for Two Days: " << getFlatFeeForTwoDays()
+         << "\nShipping Cost: " << calculateCost()<<std::endl;
+}
 
+std::istream& operator>>(std::istream& in, TwoDayPackage& p){
+        double twoDaysFlatFee;
+        
+        std::cin >> static_cast<Package&>(p);  
+
+        std::cout << "Enter Overnight Fee per Ounce: ";
+        in >> twoDaysFlatFee;
+        p.setFlatFeeForTwoDays(twoDaysFlatFee);
+
+        return in;
+}

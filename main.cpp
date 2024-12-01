@@ -37,37 +37,28 @@ int main(){
 				saveMapDataToBinaryFile(packages);
 				break;
 			}
-
-			case '4':{
-				for (auto& [id, package] : packages){
-    				delete package;
-				}
-				packages.clear();
-				cout << "The map has been emptied." << endl << endl;
-				break;	
-			}
 			
-			case '5':{
+			case '4':{
 				loadMapDataFromBinaryFile(packages);
 				break;
 			}
 
-			case '6':{
+			case '5':{
 				displayPackagesByType(packages);
 				break;
 			}
 
-			case '7':{
+			case '6':{
 				displayPackagesByCost(packages);
 				break;
 			}
 
-			case '8':{
+			case '7':{
 				extractAndModifyPackage(packages);
 				break;
 			}
 
-			case '9':{
+			case '8':{
 				cout << "Exiting..." <<endl ;
 				break;
 			}
@@ -78,7 +69,7 @@ int main(){
 			}
 		}
 
-	}while(menuChoice != '9');
+	}while(menuChoice != '8');
 
 	return 0;
 }

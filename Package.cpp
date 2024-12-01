@@ -188,44 +188,7 @@ double Package::getCostPerOunce() const{
 }
 
 double Package::calculateCost() const{
-     return (getWeight()*getCostPerOunce());
-}
-
-std::ostream& operator<<(std::ostream& out, const Package& a){
-     out<<"ID: "<<a.getID()
-        <<"\nSender Name: "<<a.getSenderName()
-        <<"\nRecipient Name: "<<a.getRecipientName()
-        <<"\nSender Address: "<<a.getSenderAddress()
-        <<"\nRecipient Address: "<<a.getRecipientAddress()
-        <<"\nSender City: "<<a.getSenderCity()
-        <<"\nRecipient City: "<<a.getRecipientCity()
-        <<"\nSender State: "<<a.getSenderState()
-        <<"\nRecipient State: "<<a.getRecipientState()
-        <<"\nSender ZIP Code: "<<a.getSenderZipCode()
-        <<"\nRecipient ZIP Code: "<<a.getRecipientZipCode()
-        <<"\nWeight: "<<a.getWeight()
-        <<"\nCost per Once: "<<a.getCostPerOunce()
-        <<"\nShipping Cost: "<<a.calculateCost()<<std::endl;
-
-     return out;
-}
-
-std::istream& operator>>(std::istream& input, Package& a){
-     input>>a.id
-          >>a.name_sender
-          >>a.name_recipient
-          >>a.address_sender
-          >>a.address_recipient
-          >>a.city_sender
-          >>a.city_recipient
-          >>a.state_sender
-          >>a.state_recipient
-          >>a.zipCode_sender
-          >>a.zipCode_recipient
-          >>a.weight
-          >>a.costPerOunce;
-          
-     return input;
+     return (getWeight() * getCostPerOunce());
 }
 
 bool Package::operator>(const Package& right) const{
@@ -242,5 +205,89 @@ bool Package::operator==(const Package& right) const{
 
 bool Package::operator!=(const Package& right) const{
      return calculateCost() != right.calculateCost();  
+}
+
+std::ostream& operator<<(std::ostream& out, const Package& p){
+     p.print(out);
+     return out;
+}
+
+void Package::print(std::ostream& out) const{
+     out << "ID: "<< getID()
+         << "\nSender Name: " << getSenderName()
+         << "\nRecipient Name: " << getRecipientName()
+         << "\nSender Address: " << getSenderAddress()
+         << "\nRecipient Address: " << getRecipientAddress()
+         << "\nSender City: " << getSenderCity()
+         << "\nRecipient City: " << getRecipientCity()
+         << "\nSender State: " << getSenderState()
+         << "\nRecipient State: " << getRecipientState()
+         << "\nSender ZIP Code: " << getSenderZipCode()
+         << "\nRecipient ZIP Code: " << getRecipientZipCode()
+         << "\nWeight: " << getWeight()
+         << "\nCost per Once: " << getCostPerOunce()
+         << "\nShipping Cost: " << calculateCost()<<std::endl;
+}
+
+std::istream& operator>>(std::istream& in, Package& p){
+     std::string id, senderName, recipientName, senderAddress, recipientAddress,
+            senderCity, recipientCity, senderState, recipientState;
+     int senderZipCode, recipientZipCode;
+     double weight, costPerOunce;
+     
+     std::cout << "Enter ID: ";
+     in >> id;
+     p.setID(id);
+     in.ignore(); 
+
+     std::cout << "Enter Sender Name: ";
+     std::getline(in, senderName);
+     p.setSenderName(senderName);
+
+     std::cout << "Enter Recipient Name: ";
+     std::getline(in, recipientName);
+     p.setRecipientName(recipientName);
+
+     std::cout << "Enter Sender Address: ";
+     std::getline(in, senderAddress);
+     p.setSenderAddress(senderAddress);
+
+     std::cout << "Enter Recipient Address: ";
+     std::getline(in, recipientAddress);
+     p.setRecipientAddress(recipientAddress);
+
+     std::cout << "Enter Sender City: ";
+     std::getline(in, senderCity);
+     p.setSenderCity(senderCity);
+
+     std::cout << "Enter Recipient City: ";
+     std::getline(in, recipientCity);
+     p.setRecipientCity(recipientCity);
+
+     std::cout << "Enter Sender State: ";
+     std::getline(in, senderState);
+     p.setSenderState(senderState);
+
+     std::cout << "Enter Recipient State: ";
+     std::getline(in, recipientState);
+     p.setRecipientState(recipientState);
+
+     std::cout << "Enter Sender ZIP Code: ";
+     in >> senderZipCode;
+     p.setSenderZipCode(senderZipCode);
+
+     std::cout << "Enter Recipient ZIP Code: ";
+     in >> recipientZipCode;
+     p.setRecipientZipCode(recipientZipCode);
+
+     std::cout << "Enter Weight: ";
+     in >> weight;
+     p.setWeight(weight);
+
+     std::cout << "Enter Cost per Ounce: ";
+     in >> costPerOunce;
+     p.setCostPerOunce(costPerOunce);
+
+     return in;
 }
 
