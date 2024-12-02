@@ -19,7 +19,7 @@ Package::Package(std::string _id, std::string nm_s, std::string nm_r, std::strin
 }
 
 void Package::setID(std::string _id){
-     if(_id.length()>0 && _id.length()<=15){
+     if(_id.length()>0 && _id.length()<=10){
           id = _id;
      }
      else{
@@ -118,7 +118,7 @@ void Package::setRecipientZipCode(int zc_r){
 }
 
 void Package::setWeight(double wg){
-     if(wg>0 && wg<=10000){
+     if(wg>0){
           weight = wg;
      }
      else{
@@ -127,7 +127,7 @@ void Package::setWeight(double wg){
 }
 
 void Package::setCostPerOunce(double co){
-     if(co>0 && co<=500){
+     if(co>0){
           costPerOunce = co;
      }
      else{
@@ -188,11 +188,13 @@ double Package::getCostPerOunce() const{
 }
 
 double Package::calculateCost() const{
+     // Calculate shipping cost based on weight and cost per ounce
      return (getWeight() * getCostPerOunce());
 }
 
 bool Package::operator>(const Package& right) const{
-    return calculateCost() > right.calculateCost();
+     // Compare two packages based on their shipping cost
+     return calculateCost() > right.calculateCost();
 }
 
 bool Package::operator>=(const Package& right) const{
@@ -208,7 +210,7 @@ bool Package::operator!=(const Package& right) const{
 }
 
 std::ostream& operator<<(std::ostream& out, const Package& p){
-     p.print(out);
+     p.print(out); // Delegate to the print function for modularity
      return out;
 }
 
@@ -230,15 +232,16 @@ void Package::print(std::ostream& out) const{
 }
 
 std::istream& operator>>(std::istream& in, Package& p){
+     // Prompt the user for all package details and validate inputs
      std::string id, senderName, recipientName, senderAddress, recipientAddress,
-            senderCity, recipientCity, senderState, recipientState;
+                 senderCity, recipientCity, senderState, recipientState;
      int senderZipCode, recipientZipCode;
      double weight, costPerOunce;
      
      std::cout << "Enter ID: ";
      in >> id;
      p.setID(id);
-     in.ignore(); 
+     in.ignore(); // Ignore remaining characters after ID input
 
      std::cout << "Enter Sender Name: ";
      std::getline(in, senderName);

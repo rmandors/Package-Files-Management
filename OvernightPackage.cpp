@@ -10,7 +10,7 @@ OvernightPackage::OvernightPackage(std::string _id, std::string nm_s, std::strin
 }
 
 void OvernightPackage::setOvernightFeePerOunce(double of){
-     if(of>0 && of<=100){
+     if(of>0){
           overnightFeePerOunce = of;
      }
      else{

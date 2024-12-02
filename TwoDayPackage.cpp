@@ -10,7 +10,7 @@ TwoDayPackage::TwoDayPackage(std::string _id, std::string nm_s, std::string nm_r
 }
 
 void TwoDayPackage::setFlatFeeForTwoDays(double ff){
-     if(ff>0 && ff<=100){
+     if(ff>0){
           flatFeeForTwoDays = ff;
      }
      else{
