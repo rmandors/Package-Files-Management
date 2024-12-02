@@ -9,7 +9,7 @@ class Package{
 		friend std::istream& operator>>(std::istream&, Package&);
 
     public:
-        Package(std::string, std::string, std::string, std::string, std::string, 
+        Package(std::string, std::string, std::string, std::string, std::string,
           	    std::string, std::string, std::string, std::string, int, int, double, double);
 
 	  	virtual ~Package() = default;

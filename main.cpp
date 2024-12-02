@@ -13,8 +13,8 @@ Raymond Portilla - 00335050
 using namespace std;
 
 int main(){
-	map<string, Package*> packages;
-	char menuChoice;
+	map<string, Package*> packages; // Stores all packages with ID as the key
+	char menuChoice; // Stores the user's menu selection
 
 	do{
 		displayMenu();
@@ -59,6 +59,7 @@ int main(){
 			}
 
 			case '8':{
+				// Clear the map of packages and release memory
 				for(auto& [id, package] : packages){
     				delete package;
 				}
@@ -73,12 +74,19 @@ int main(){
 			}
 
 			default:{
+				// Handle invalid user inputs
 				cout << "Please enter a valid option!" << endl << endl;
 				break;
 			}
 		}
 
 	}while(menuChoice != '9');
+
+	// Release memory before ending the program (in case the map was not cleared manually)
+    for (auto& [id, package] : packages) {
+       	delete package;
+    }
+    packages.clear();
 
 	return 0;
 }

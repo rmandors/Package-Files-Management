@@ -22,11 +22,13 @@ double OvernightPackage::getOvernightFeePerOunce() const{
      return overnightFeePerOunce;
 }
 
+// Override the calculateCost method to include the overnight fee per ounce
 double OvernightPackage::calculateCost() const{
      double newCostPerOunce = getCostPerOunce() + getOvernightFeePerOunce(); 	
      return (newCostPerOunce * getWeight()); 	
 }
 
+// Override the print method to also display the overnight fee per ounce
 void OvernightPackage::print(std::ostream& out) const{
      out << "ID: " << getID()
          << "\nSender Name: " << getSenderName()
@@ -48,8 +50,10 @@ void OvernightPackage::print(std::ostream& out) const{
 std::istream& operator>>(std::istream& in, OvernightPackage& p){
         double overnightFee;
         
+        // Calls the base class operator>> to read common fields
         std::cin >> static_cast<Package&>(p);  
 
+        // Reads the additional overnight fee per ounce
         std::cout << "Enter Overnight Fee per Ounce: ";
         in >> overnightFee;
         p.setOvernightFeePerOunce(overnightFee);

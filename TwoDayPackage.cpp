@@ -22,10 +22,12 @@ double TwoDayPackage::getFlatFeeForTwoDays() const{
      return flatFeeForTwoDays;
 }
 
+// Override the calculateCost method to include the flat fee for two days
 double TwoDayPackage::calculateCost() const{
      return(Package::calculateCost() + flatFeeForTwoDays);	
 }
 
+// Override the print method to also display the flat fee for two days
 void TwoDayPackage::print(std::ostream& out) const{
      out << "ID: " << getID()
          << "\nSender Name: " << getSenderName()
@@ -46,10 +48,12 @@ void TwoDayPackage::print(std::ostream& out) const{
 
 std::istream& operator>>(std::istream& in, TwoDayPackage& p){
         double twoDaysFlatFee;
-        
+
+        // Calls the base class operator>> to read common fields
         std::cin >> static_cast<Package&>(p);  
 
-        std::cout << "Enter Overnight Fee per Ounce: ";
+        // Reads the additional flat fee for two days
+        std::cout << "Enter Flat Fee for Two Days: ";
         in >> twoDaysFlatFee;
         p.setFlatFeeForTwoDays(twoDaysFlatFee);
 
